@@ -37,6 +37,7 @@ void compress(const char *filename) {
 
     // Read each character from the input file
     int c;
+    int digitCount=0;
     while ((c = fgetc(inputFile)) != EOF) {
         // Check if the character is a digit
         if ('0' <= c && c <= '9') {
@@ -46,8 +47,16 @@ void compress(const char *filename) {
             // Write the binary representation to the output file
             size_t binaryLen = strlen(BINARY_REPRESENTATIONS[index]);
             fwrite(BINARY_REPRESENTATIONS[index], sizeof(char), binaryLen, outputFile);
+            digitCount++;
         }
+
     }
+     //  if the number of digits is odd
+    if (digitCount % 2 != 0) {
+        const char *padding = "0000";
+        fwrite(padding, sizeof(char), strlen(padding), outputFile);
+    }
+
 
     // Close the files
     fclose(inputFile);
