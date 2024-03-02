@@ -75,8 +75,8 @@ void decompress(const char *filename) {
 
     // Create the output file
     char outputFilename[256];
-    snprintf(outputFilename, sizeof(outputFilename), "%s_decompressed.txt", filename);
-   // FILE *outputFile = fopen(outputFilename, "w");
+   snprintf(outputFilename, sizeof(outputFilename), "%s.txt", filename);
+  
     FILE *outputFile = fopen(outputFilename, "wb");
 
     if (outputFile == NULL) {
